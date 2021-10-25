@@ -1,0 +1,54 @@
+	{% extends 'base.html' %}
+{% block title %}
+Digital-Hub-SignUp
+{% endblock %}
+{% block body %}
+
+<div class="ui active dimmer" id="loading" hidden>
+    <div class="ui massive text loader">Loading</div>
+</div>
+
+<div class="container p-3" style="height:100%">
+    <div class="col-lg-5 col-md-8 mx-auto ui segment p-4">
+        <p class="display-6 text-center border p-2">SignUp</p>
+        <hr>
+        <div class="ui warning message" id="message" {% if not error %}hidden{% endif %}>
+            {{error}}
+        </div>
+
+        <form class="ui form" id="signupform" onsubmit="return validate(event)" action="/signup" method="POST" style="height:100%">
+            {% csrf_token %}
+
+            <div class="field">
+                <label>Name</label>
+                <input type="text" name="name" placeholder="Name">
+            </div>
+            <div class="field">
+                <label>Phone</label>
+                <input type="number" name="phone" placeholder="Phone">
+            </div>
+            <div class="field">
+                <label>Email</label>
+                <input type="email" name="email" placeholder="Email">
+            </div>
+            <div class="field">
+                <label>Password</label>
+                <input type="password" name="password" placeholder="Password">
+            </div>
+            <div class="field">
+                <label>Re-Enter Password</label>
+                <input type="password" name="repassword" placeholder="Re-Password">
+            </div>
+            <div id="vcodeinput" class="field" hidden>
+                <label>Verification Code</label>
+                <input type="text" name="code" id="code" placeholder="Verification Code">
+            </div>
+
+            <button class="ui button" id="sbutton" type="submit">Submit</button>
+            <a class="ui button" id="vbutton" onclick="verifyotp()" hidden>Verify</a>
+        </form>
+    </div>
+</div>
+{% load static %}
+<script src="{% static 'shop/js/signup.js' %}"></script>
+{% endblock %}

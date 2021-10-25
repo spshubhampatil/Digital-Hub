@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% block title %}
+Digital-Hub-Contact Us
+{% endblock %}
+{% block body %}
+
+<div class="ui active dimmer" id="loading" hidden>
+    <div class="ui massive text loader">Loading</div>
+</div>
+
+<div class="container p-3" style="height:100%">
+    <div class="col-lg-5 col-md-8 mx-auto ui segment p-4">
+        <p class="display-6 text-center border p-2">Contact Us</p>
+        <hr>
+        <div class="ui warning message" id="message" {% if not error %}hidden{% endif %}>
+            {{error}}
+        </div>
+         <div class="ui success message" {% if not message %}hidden{% endif %}>
+            {{message}}
+        </div>
+
+        <form class="ui form" id="contact" action="/contact" method="POST">
+            {% csrf_token %}
+
+            
+            <div class="field">
+                <label>Phone</label>
+                <input type="number" name="phone" id="phone" placeholder="Phone" value="{{value.phone}}">
+            </div>
+            
+            <div class="field">
+                <label>Message</label>
+                <textarea name="content" id="content" cols="30" rows="5" value="{{value.content}}"></textarea>                
+            </div>
+            <button class="ui button" type="submit">Submit</button>            
+        </form>
+    </div>
+</div>
+{% load static %}
+<script>
+{% if thank %}
+alert('Thanks for contacting us. We will get back to you soon!');
+
+document.location = "/contact";
+{% endif %}
+</script>
+{% endblock %}
