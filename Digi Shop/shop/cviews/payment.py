@@ -34,12 +34,14 @@ def createpayment(request,product_id):
 def verifypayment(request):
     payment_id=request.GET.get('payment_id')
     payment_request_id=request.GET.get('payment_request_id')
-    response = API.payment_request_payment_status(payment_request_id, payment_id)
+    response = API.payment_request_payment_status(payment_request_id, payment_id)   
 
     status=response['payment_request']['payment']['status']
     if status != "Failed":
         payment=Payment.objects.get(payment_request_id=payment_request_id)
         payment.payment_id=response['payment_request']['payment']['payment_id']
+        payment.created_at=response['payment_request']['payment']['created_at']
+        payment.updated_at=response['payment_request']['payment']['created_at']        
         payment.status=status
         payment.save()
         

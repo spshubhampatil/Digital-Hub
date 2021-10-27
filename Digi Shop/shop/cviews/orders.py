@@ -11,6 +11,6 @@ def my_orders(request):
     orders=Order.objects.filter(user=user,complete=True)     
         
     payment=Payment.objects.filter( ~Q(status="Failed"),user=user)      
-    totalorders= list(payment)+ list(orders)     
-    
+    totalorders= list(payment)+ list(orders)
+
     return render(request,'orders.html',{'orders':totalorders})

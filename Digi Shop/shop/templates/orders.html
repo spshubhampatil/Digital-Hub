@@ -15,6 +15,7 @@ Digital-Hub-My Orders
                     <th class="text-center">Product</th>
                     <th class="text-center">Product Name</th>
                     <th class="text-center">Download</th>
+                    <th class="text-center">Date & Time</th>
                 </tr>
             </thead>
             <tbody>
@@ -27,6 +28,7 @@ Digital-Hub-My Orders
                     <td class="text-center p-4">{{order.product.name}}</td>
                     <td class="text-center p-4"><a href="/download/paidproduct/{{order.product.id}}" target="_blank"
                             class="ui button teal">Download</a></td>
+                    <td class="text-center p-4">{{order.updated_at}}</td>
                 </tr>
                 {% endfor %}
             </tbody>
