@@ -8,8 +8,7 @@ from django.core.mail import send_mail
 from django.utils.html import strip_tags
 from django.conf import settings
 
-def sendemail(name, email, subject, htmlcontent):
-    
+def sendemail(name, email, subject, htmlcontent):    
     
     # message = MIMEMultipart()
     # message['From'] = EMAIL_SENDER_NAME
