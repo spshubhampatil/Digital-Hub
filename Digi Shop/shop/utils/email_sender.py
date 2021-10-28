@@ -10,6 +10,7 @@ from django.conf import settings
 
 def sendemail(name, email, subject, htmlcontent):
     
+    
     # message = MIMEMultipart()
     # message['From'] = EMAIL_SENDER_NAME
     # message['To'] = email
