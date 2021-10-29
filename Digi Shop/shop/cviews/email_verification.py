@@ -1,10 +1,10 @@
 from django.shortcuts import render, HttpResponse, redirect
-from shop.models import Product,ProductImage, User
+from shop.models import Product,ProductImage
 from shop.utils.email_sender import sendemail
 import random
 import math
 from django.contrib.auth.hashers import make_password, check_password
-
+from django.contrib.auth.models import User
 
 def sendotp(request):
     name=request.POST.get('name')

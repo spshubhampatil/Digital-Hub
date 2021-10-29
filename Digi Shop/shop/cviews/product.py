@@ -1,6 +1,7 @@
 from django.shortcuts import render
-from shop.models import Product,ProductImage, User, Payment
+from shop.models import Product,ProductImage, Payment
 from django.db.models import Q
+from django.contrib.auth.models import User
 
 
 def productdetails(request,product_id):

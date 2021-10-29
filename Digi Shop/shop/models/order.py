@@ -1,5 +1,6 @@
 from django.db import models
-from shop.models import Product,User
+from shop.models import Product
+from django.contrib.auth.models import User
 
 class Order(models.Model):       
     user=models.ForeignKey(User, null= False, on_delete=models.CASCADE)   

@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
-from shop.models import User
+# from shop.models import User
+from django.contrib.auth.models import User
 
 
 def active_required(get_response):
@@ -9,7 +10,7 @@ def active_required(get_response):
         if user:            
             user=User.objects.get(id=user.get('id'))
 
-            if user.active:
+            if user.is_active:
                 response=None
                 if product_id:
                     response=get_response(request, product_id)

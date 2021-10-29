@@ -1,7 +1,7 @@
 from django.views import View
-from shop.models import Contact, User
+from shop.models import Contact
 from django.shortcuts import render, redirect
-
+from django.contrib.auth.models import User
 
 class ContactView(View):    
 

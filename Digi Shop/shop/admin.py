@@ -1,9 +1,10 @@
 from django.contrib import admin
-from shop.models import Product, ProductImage, User, Payment,Contact,Order
+from shop.models import Product, ProductImage, Payment,Contact,Order
 from shop.models.product import Category
 from django.utils.html import format_html
 from digishop.settings import PAYMENT_API_KEY,PAYMENT_API_AUTH_TOKEN
 import math
+from django.contrib.auth.models import User
 from instamojo_wrapper import Instamojo
 API = Instamojo(api_key=PAYMENT_API_KEY,
                 auth_token=PAYMENT_API_AUTH_TOKEN,endpoint='https://test.instamojo.com/api/1.1/')
@@ -48,29 +49,21 @@ class ProductModel(admin.ModelAdmin):
     get_thumbnail.short_description='Icon'
 
 
-class UserModel(admin.ModelAdmin):
-    list_display=['id','name','email','phone','active']
-    sortable_by=['id','name']
-    list_editable=['active']
-    inlines=[OrderbasketModel]
 
 
 class PaymentModel(admin.ModelAdmin):
-    list_display=['id','get_user','get_product','get_status','get_amount']
-
-    def get_amount(self,obj):
-        return obj.paymentDetails['payment_request']['amount']
+    list_display=['id','get_user','get_product','get_status','amount']    
 
     def get_status(self,obj):
-        response = API.payment_request_payment_status(obj.payment_request_id, obj.payment_id)
-        obj.paymentDetails=response
+        # response = API.payment_request_payment_status(obj.payment_request_id, obj.payment_id)
+        # obj.paymentDetails=response
         if obj.status != "Failed":
             return True
         else:
             return False
 
     def get_user(self,obj):
-        return format_html(f'<a target="_blank" href="/admin/shop/user/{obj.user.id}">{obj.user}</a>')
+        return format_html(f'<a target="_blank" href="/admin/auth/user/{obj.user.id}">{obj.user}</a>')
     
     def get_product(self,obj):
         return format_html(f'<a target="_blank" href="/admin/shop/product/{obj.product.id}">{obj.product}</a>')
@@ -89,14 +82,13 @@ class ContactModel(admin.ModelAdmin):
 
     get_content.short_description='Message'
 
-class OrderModel(admin.ModelAdmin):
-    list_display=['id','user','product','payment_method','complete']
-    sortable_by=['id','user']
-    list_editable=['complete']
+# class OrderModel(admin.ModelAdmin):
+#     list_display=['id','user','product','payment_method','complete']
+#     sortable_by=['id','user']
+#     list_editable=['complete']
 
 admin.site.register(Product, ProductModel)
-admin.site.register(User, UserModel)
 admin.site.register(Payment,PaymentModel)
 admin.site.register(Contact,ContactModel)
 admin.site.register(Category)
-admin.site.register(Order,OrderModel)
+# admin.site.register(Order,OrderModel)

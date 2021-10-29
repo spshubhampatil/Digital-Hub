@@ -1,10 +1,11 @@
 from django.views import View
 from django.contrib.auth.hashers import make_password, check_password
-from shop.models import User
+# from shop.models import User
 from django.shortcuts import render, redirect, HttpResponse
 from shop.utils.email_sender import sendemail
 import math
 import random
+from django.contrib.auth.models import User
 
 class ResetPassword(View):
     
@@ -37,12 +38,12 @@ class ResetPassword(View):
 
 def sendEmailAfterChangePassword(user):
     html=f'''
-    <p>Dear <b>{user.name}</b>,
+    <p>Dear <b>{user.email}</b>,
     <p>Your Password has been changed successfully,</p>
     <p>Now, You can login with new password..</p>
     <p>Thank You..</p>
     '''
-    sendemail(user.name,user.email,'Password Changed Successfully..',html)
+    sendemail(user.email,user.email,'Password Changed Successfully..',html)
         
 
 

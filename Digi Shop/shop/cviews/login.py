@@ -1,7 +1,9 @@
 from django.views import View
 from django.contrib.auth.hashers import make_password, check_password
-from shop.models import User
+# from shop.models import User
 from django.shortcuts import render, redirect
+from django.contrib.auth.models import User
+from django.contrib.auth import authenticate, login, logout
 
 class LoginView(View):
     return_url=None
@@ -15,14 +17,32 @@ class LoginView(View):
         try:
             user=User.objects.get(email=email)
             # active=User.objects.get(active=active)
-            if user.active ==True:
+            print(user)
+            if user.is_active ==True:
+                print(user)
 
-                flag=check_password(password=password, encoded=user.password)
-                if(flag):
+                user = authenticate(request, username=email, password=password)
+                
+                if user is not None:
+                    print(user)
+                    # login(request, user)
                     temp={}
+                    
                     temp['email']=user.email
+                    print(user.email)
                     temp['id']=user.id
-                    request.session['user']=temp
+                    print(user.id)
+
+                    request.session['user'] = temp
+                    return redirect('/')
+                
+
+                # flag=check_password(password=password, encoded=user.password)
+                # if(flag):
+                #     temp={}
+                #     temp['email']=user.email
+                #     temp['id']=user.id
+                #     request.session['user']=temp
                     if LoginView.return_url:
                         return redirect(LoginView.return_url)
                     return redirect('index')

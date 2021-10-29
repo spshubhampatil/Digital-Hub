@@ -18,15 +18,16 @@ Digital-Hub-Profile
          <div class="row border m-3">
             <div class="col-6 m-0 p-0" style="float-center">
                <ul class="list-group list-group-flush">
-                  <li class="list-group-item text-right">Name &nbsp; : </li>
-                  <li class="list-group-item text-right">Phone &nbsp; :</li>
+                  <li class="list-group-item text-right">First Name &nbsp; : </li>
+                  <li class="list-group-item text-right">Last Name &nbsp; :</li>
                   <li class="list-group-item text-right">Email &nbsp; : </li>
                </ul>
             </div>
             <div class="col-6 m-0 p-0" style="float-center">
                <ul class="list-group list-group-flush">
-                  <li class="list-group-item text-left"> {{user.name}}</li>
-                  <li class="list-group-item text-left"> {% if user.phone %}{{user.phone}} {% else %}XXXXXXXXXX{% endif %} </li>
+                  <li class="list-group-item text-left"> {{user.first_name}}</li>
+                  <li class="list-group-item text-left"> {{user.last_name}}</li>
+                  <!-- <li class="list-group-item text-left"> {% if user.phone %}{{user.phone}} {% else %}XXXXXXXXXX{% endif %} </li> -->
                   <li class="list-group-item text-left"> {{user.email}}</li>
                </ul>
             </div>

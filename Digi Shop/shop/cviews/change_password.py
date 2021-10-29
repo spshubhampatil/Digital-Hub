@@ -1,10 +1,11 @@
 from django.views import View
 from django.contrib.auth.hashers import make_password, check_password
-from shop.models import User
+# from shop.models import User
 from django.shortcuts import render, redirect, HttpResponse
 from shop.utils.email_sender import sendemail
 import math
 import random
+from django.contrib.auth.models import User
 
 
 class ChangePassword(View):

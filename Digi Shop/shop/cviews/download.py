@@ -1,5 +1,6 @@
 from django.shortcuts import render,redirect
-from shop.models import Product, User, Payment,Order
+from shop.models import Product,  Payment,Order
+from django.contrib.auth.models import User
 
 # Create your views here.
 def downloadfree(request,product_id):

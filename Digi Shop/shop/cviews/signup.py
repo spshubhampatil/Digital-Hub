@@ -1,8 +1,9 @@
 from django.views import View
 from django.contrib.auth.hashers import make_password, check_password
-from shop.models import User
+# from shop.models import User
 from django.shortcuts import render, HttpResponse, redirect
 from shop.utils.email_sender import sendemail
+from django.contrib.auth.models import User
 
 class SignupView(View):
     def get(self, request):
@@ -16,8 +17,13 @@ class SignupView(View):
             password=request.POST.get('password')
             phone=request.POST.get('phone')
             hashedpassword=make_password(password=password)
-            user= User(name=name, email=email,password=hashedpassword,phone=phone)
+            # user= User(name=name, email=email,password=hashedpassword,phone=phone)
+            # user.save()
+
+            user = User.objects.create_user(email, email, password)
+            user.is_active = True            
             user.save()
+            print(user)
             sendEmailAfterCreateAccount(user)
             thank=True   
             return render(request,'login.html',{'thank':thank})
@@ -27,11 +33,12 @@ class SignupView(View):
 
 def sendEmailAfterCreateAccount(user):
     html=f'''
-    <p>Dear <b>{user.name}</b>,
-    <p>Welcome to our family,</p>
+    <p>Dear <b>{user.email}</b>,
+    <p>Welcome to Digital Hub,</p>
     <p>Your Email has been verified successfully,</p>
     <p>Now, You can login with your email & password..</p>
-    <p>Thank You..</p>
+    <p>Thank You,</p>
+    <p>Team Digital Hub</p>
     '''
-    sendemail(user.name,user.email,'Welcome to our family..',html)
+    sendemail(user.email,user.email,'Welcome to Digital Hub',html)
         

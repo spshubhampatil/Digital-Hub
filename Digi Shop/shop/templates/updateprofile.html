@@ -15,8 +15,9 @@ Digital-Hub-Update Profile
         <div class="row border m-1">
             <div class="col-6 m-0 p-0" style="float-center">
                 <ul class="list-group list-group-flush">
-                    <li class="list-group-item text-right">Name &nbsp; : </li>
-                    <li class="list-group-item text-right">Phone &nbsp; :</li>
+                    <li class="list-group-item text-right">First Name &nbsp; : </li>
+                    <li class="list-group-item text-right">Last Name &nbsp; : </li>
+                    <!-- <li class="list-group-item text-right">Phone &nbsp; :</li> -->
                     <li class="list-group-item text-right">Email &nbsp; : </li>
                 </ul>
             </div>
@@ -25,9 +26,10 @@ Digital-Hub-Update Profile
                 <div class="col-12 m-0 p-0" style="float-center">
                     <ul class="list-group list-group-flush">
 
-                        <input type="text" name="name" class="form-control m-1" null="true" placeholder="{{user.name}}">
-                        <input type="number" name="phone" class="form-control m-1" null="true"
-                            placeholder="{{user.phone}}">
+                        <input type="text" name="fname" class="form-control m-1" null="true" placeholder="{{user.first_name}}">
+                        <input type="text" name="lname" class="form-control m-1" null="true" placeholder="{{user.last_name}}">
+                        <!-- <input type="number" name="phone" class="form-control m-1" null="true"
+                            placeholder="{{user.phone}}"> -->
                         <li class="list-group-item text-center"> {{user.email}}</li>
                     </ul>
                 </div>
