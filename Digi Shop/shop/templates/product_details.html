@@ -14,7 +14,7 @@
             <div class="row">
                 {% for image in images %}
 
-                <div class="col"><img onclick="changeimage(event)" src="{{image.image.url}}" style="width:150px;height:180px" alt=""
+                <div class="col"><img onmouseover="changeimage(event)" src="{{image.image.url}}" style="width:150px;height:180px" alt=""
                         class="img-thumbnail"></div>
                 {% endfor %}
             </div>
@@ -26,6 +26,14 @@
             <p class="display-8 badge badge-warning">Save: {{product.discount|percent}}</p>
             <h4>Price: <del>{{product.price|rupee}}</del> &nbsp; {{product|saleprice|rupee}}</h4>
             </br>
+
+            <!-- Enter Coupon Code (if applicable)
+            <div class="ui field">
+            <label>Code</label>            
+            <input type="text" class="ui field" name="code" id="code" placeholder="Code" onblur=getcode() value="">
+            </div>
+            </br> -->
+            
             {% if can_download %}
             <a href="/download/paidproduct/{{product.id}}" class="btn btn-outline-info" target="_blank">Download</a>
             {% else %}
@@ -46,4 +54,11 @@
 <hr>
 {% load static %}
 <script src="{% static 'shop/js/product_details.js'%}"></script>
+<script>
+    function getcode(){
+        code=document.getElementById("code").value;
+    alert(code)
+    }
+    
+</script>
 {% endblock %}

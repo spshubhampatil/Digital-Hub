@@ -1,7 +1,8 @@
 from django.shortcuts import render,redirect
-from shop.models import Product
+from shop.models import Product,Coupon
 from shop.models.product import Category
 from django.core.paginator import Paginator
+
 
 
 # Create your views here.
@@ -9,6 +10,10 @@ def index(request):
     products=Product.objects.filter(active=True)
     Categories=Category.objects.all();   
     categoryID=request.GET.get('category')
+    coupons=Coupon.objects.all()
+    print(coupons)
+    for co in coupons:
+        print(list(co.product.all().values_list('name')))
     if categoryID:
         products=Product.get_all_products_by_Categoryid(categoryID);        
         

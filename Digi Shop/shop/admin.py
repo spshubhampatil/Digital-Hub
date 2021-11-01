@@ -1,5 +1,6 @@
 from django.contrib import admin
 from shop.models import Product, ProductImage, Payment,Contact,Order
+from shop.models.coupon import Coupon
 from shop.models.product import Category
 from django.utils.html import format_html
 from digishop.settings import PAYMENT_API_KEY,PAYMENT_API_AUTH_TOKEN
@@ -91,4 +92,5 @@ admin.site.register(Product, ProductModel)
 admin.site.register(Payment,PaymentModel)
 admin.site.register(Contact,ContactModel)
 admin.site.register(Category)
+admin.site.register(Coupon)
 # admin.site.register(Order,OrderModel)

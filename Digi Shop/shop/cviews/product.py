@@ -13,7 +13,7 @@ def productdetails(request,product_id):
         if session_user:
             user_id=session_user.get('id')
             user=User(id=user_id)
-            payment=Payment.objects.filter(~Q(status="Failed"),product=product, user=user)
+            payment=Payment.objects.filter(~Q(status="Failed"),~Q(status="Pending"),product=product, user=user)
             if len(payment) != 0:
                 can_download=True
     except:
