@@ -82,11 +82,22 @@ function showotpinput(){
     var otpinput=document.getElementById('vcodeinput')
     var subbutton=document.getElementById('sbutton')
     var verbutton=document.getElementById('vbutton')
+    var name=document.getElementById('name')
+    var phone=document.getElementById('phone')
+    var email=document.getElementById('email')
+    var password=document.getElementById('password')
+    var repassword=document.getElementById('repassword')
 
     otpinput.hidden=false
     subbutton.hidden=true
     subbutton.disabled=true
     verbutton.hidden=false
+
+    name.hidden=true
+    phone.hidden=true
+    email.hidden=true
+    password.hidden=true
+    repassword.hidden=true
 }
 
 function verifyotp(){
