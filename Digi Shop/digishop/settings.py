@@ -129,9 +129,11 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/1234/sdbashdgs454g/'
-STATIC_ROOT = str(BASE_DIR) + '/static/'
+# STATIC_ROOT = str(BASE_DIR) + '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR)+'/static/'
 MEDIA_URL = '/images/u/thumb/'
 MEDIA_ROOT = BASE_DIR
+
 
 
 # EMAIL_SENDER_NAME=env('EMAIL_SENDER_NAME')
