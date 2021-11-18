@@ -19,9 +19,9 @@ from django.conf.urls.static import static
 from digishop.settings import MEDIA_URL, MEDIA_ROOT, STATIC_URL, STATIC_ROOT
 
 
-admin.site.site_header="Digi-Shop Administration"
-admin.site.site_title="Digi-Shop Admin Panel"
-admin.site.index_title="Welcome to Digi-Shop Administration"
+admin.site.site_header="Digital-Hub Administration"
+admin.site.site_title="Digital-Hub Admin Panel"
+admin.site.index_title="Welcome to Digital-Hub Administration"
 
 urlpatterns = [
     path('admin/', admin.site.urls),
