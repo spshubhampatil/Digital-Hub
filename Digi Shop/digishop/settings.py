@@ -131,7 +131,8 @@ USE_TZ = True
 
 STATIC_URL = '/static/1234/sdbashdgs454g/'
 # STATIC_ROOT = str(BASE_DIR) + '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR)+'/static/'
+# STATIC_ROOT = os.path.join(BASE_DIR)+'/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 MEDIA_URL = '/images/u/thumb/'
 MEDIA_ROOT = BASE_DIR
 
