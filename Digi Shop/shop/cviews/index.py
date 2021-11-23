@@ -11,7 +11,7 @@ def index(request):
     Categories=Category.objects.all();   
     categoryID=request.GET.get('category')
     coupons=Coupon.objects.all()
-    print(coupons)
+    
     for co in coupons:
         print(list(co.product.all().values_list('name')))
     if categoryID:
