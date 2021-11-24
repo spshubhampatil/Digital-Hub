@@ -37,10 +37,17 @@ DEBUG = env('DEBUG')
 
 ALLOWED_HOSTS = [env('APP_ALLOWED_HOST')]
 
+DATABASE_NAME=env('DATABASE_NAME')
+DATABASE_PORT=env('DATABASE_PORT')
+DATABASE_USER=env('DATABASE_USER')
+DATABASE_PASSWORD=env('DATABASE_PASSWORD')
+DATABASE_HOST=env('DATABASE_HOST')
+
 
 # Application definition
 
 INSTALLED_APPS = [
+    'whitenoise.runserver_nostatic',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -87,8 +94,14 @@ WSGI_APPLICATION = 'digishop.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': str(BASE_DIR / 'db.sqlite3'),
+        # 'ENGINE': 'django.db.backends.sqlite3',
+        # 'NAME': str(BASE_DIR / 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': DATABASE_NAME,
+        'PORT':DATABASE_PORT ,
+        'HOST': DATABASE_HOST,
+        'USER': DATABASE_USER,
+        'PASSWORD': DATABASE_PASSWORD,
     }
 }
 
@@ -132,6 +145,7 @@ USE_TZ = True
 STATIC_URL = '/static/1234/sdbashdgs454g/'
 # STATIC_ROOT = str(BASE_DIR) + '/static/'
 # STATIC_ROOT = os.path.join(BASE_DIR)+'/static/'
+# STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 MEDIA_URL = '/images/u/thumb/'
 MEDIA_ROOT = BASE_DIR
