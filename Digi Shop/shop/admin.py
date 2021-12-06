@@ -53,7 +53,7 @@ class ProductModel(admin.ModelAdmin):
 
 
 class PaymentModel(admin.ModelAdmin):
-    list_display=['id','get_user','get_product','get_status','amount']    
+    list_display=['id','get_user','get_product','get_status','get_mode','amount']    
 
     def get_status(self,obj):
         # response = API.payment_request_payment_status(obj.payment_request_id, obj.payment_id)
@@ -62,6 +62,12 @@ class PaymentModel(admin.ModelAdmin):
             return True
         else:
             return False
+
+    def get_mode(self,obj):
+        if obj.payment_mode == "Online":
+            return "Online"
+        elif obj.payment_mode == "Offline":
+            return "Offline"
 
     def get_user(self,obj):
         return format_html(f'<a target="_blank" href="/admin/auth/user/{obj.user.id}">{obj.user}</a>')
@@ -72,6 +78,7 @@ class PaymentModel(admin.ModelAdmin):
     get_user.short_description='User'
     get_product.short_description='Product'
     get_status.short_description='Status'
+    get_mode.short_description='Payment Mode'
     get_status.boolean=True
     
 
