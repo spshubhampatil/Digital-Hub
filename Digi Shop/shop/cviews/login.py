@@ -34,6 +34,8 @@ class LoginView(View):
                     print(user.id)
 
                     request.session['user'] = temp
+                    if LoginView.return_url:
+                        return redirect(LoginView.return_url)
                     return redirect('/')
                 
 
